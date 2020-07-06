@@ -12,4 +12,6 @@ The goal of this repository is to understand `BackEnd` and to become familiar wi
 
 ### ⌨️ Operating System
 
-- 
+### 📦 Database
+
+- [DBMS](https://github.com/BKJang/do-you-know-backend/issues/2)
