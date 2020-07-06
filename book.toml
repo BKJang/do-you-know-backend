@@ -1,5 +1,6 @@
 [book]
-authors = []
+authors = ["BKJang"]
 language = "en"
 multilingual = false
 src = "src"
+title = "Do you know backend?"
