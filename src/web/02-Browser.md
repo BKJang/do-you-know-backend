@@ -139,7 +139,7 @@ Render Tree가 만들어진 뒤 기기의 viewport를 기준으로 노드들의 
 
    layer들을 합성하여 하나의 bitmap으로 만든 뒤 최종 page를 만든다.
 
-#### Reference
+#### :pray: Reference
 
 - [edwidth - 부스트코스 웹 백엔드](https://www.edwith.org/boostcourse-web-be/lecture/58944/)
 - [How Browsers Work: Behind the scenes of modern web browsers](https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/)
