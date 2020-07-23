@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li></ol></li><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li></ol></li><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -447,6 +447,111 @@ brew services list
 <li><a href="https://www.vobour.com/%EB%B9%84%EB%91%98%EA%B8%B0%EB%A1%9C-%EC%84%A4%EB%AA%85%ED%95%98%EB%8A%94-https-https-explained-with-car">비둘기로 설명하는 HTTPS(HTTPS explained with carrier pigeons)</a></li>
 <li><a href="http://mohwaproject.tistory.com/entry/HTTPS%EB%9E%80">무하프로젝트 - HTTP, HTTPS 프로토콜이란? </a></li>
 <li><a href="https://opentutorials.org/course/228/4894">HTTPS와 SSL 인증서</a></li>
+</ul>
+<a class="header" href="#web-broswer의-작동-원리" id="web-broswer의-작동-원리"><h1>Web Broswer의 작동 원리</h1></a>
+<a class="header" href="#rendering-engine" id="rendering-engine"><h2>Rendering Engine</h2></a>
+<p>현대 브라우저들의 렌더링 엔진은 다양하다. gecko기반의 spider monkey를 사용하는 firefox, webkit - blink기반의 V8을 사용하는 chrome, webkit을 사용하는 safari 등 상당히 종류가 많다.</p>
+<p>하지만 모든 브라우저는 크게 비슷한 flow로 동작하며 다음의 그림은 그 뼈대인 main flow다.</p>
+<p><img src="https://user-images.githubusercontent.com/24724691/62412557-96296180-b63f-11e9-9f0c-fe14a3914629.png" alt="mainflow" /></p>
+<ol>
+<li>DOM Tree 구축을 위한 HTML parsing</li>
+<li>Render Tree 구축</li>
+<li>Render Tree의 배치</li>
+<li>paint</li>
+</ol>
+<p>모든 브라우저는 위의 과정을 거쳐 화면에 그린다.</p>
+<p>모든 작업은 UX를 위해 점진적으로 진행된다.</p>
+<p>내용을 최대한 빠르게 paint하기 위해 모든 HTML이 parsing 되기를 기다리지는 않고 layout과 paint 일부를 먼저 처리한다.</p>
+<p>중요한 것은 위와 같은 flow로 작동한다는 점이다.</p>
+<a class="header" href="#예시" id="예시"><h3>예시</h3></a>
+<p>HTML5rocks라는 구글이 했던 프로젝트의 <a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/">How Browsers Work: Behind the scenes of modern web browsers</a>의 유명한 그림이다.</p>
+<ul>
+<li>Webkit Engine 기반</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/24724691/62412567-bf49f200-b63f-11e9-9ed4-ec8215d04a7d.png" alt="Webkit" /></p>
+<ul>
+<li>Gecko Engine 기반</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/24724691/62412568-bf49f200-b63f-11e9-86a9-743f6d911e54.png" alt="Gecko" /></p>
+<p>이미 너무 예전 그림이며 현대에는 더욱더 복잡한 과정을 거친다. 고전적인 rendering 과정이지만 두 엔진은 용어가 조금 다를 뿐 main flow는 비슷하게 작동함을 알 수 있다.</p>
+<a class="header" href="#critical-rendering-pathcrp" id="critical-rendering-pathcrp"><h2>Critical Rendering Path(CRP)</h2></a>
+<p>위처럼 브라우저에서 화면이 그려지기까지의 주요한 과정을 Critical Rendering Path라고 한다.</p>
+<ol>
+<li>HTML 마크업을 처리하고 DOM 트리를 빌드한다.</li>
+<li>CSS 마크업을 처리하고 CSSOM 트리를 빌드한다.</li>
+<li>DOM 및 CSSOM을 결합하여 Rendering 트리를 형성한다.</li>
+<li>Rendering 트리에서 레이아웃을 실행하여 각 노드의 기하학적 형태(화면의 위치)를 계산한다.</li>
+<li>개별 노드를 화면에 paint한다.</li>
+</ol>
+<p>이 과정을 정리한 유명한 글은 Google Developers의 <a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/?hl=ko">주요 렌더링 경로</a>가 있다.</p>
+<p>webkit과 gecko, 다른 모든 렌더링 엔진은 이 Critical Rendering Path를 따른다.</p>
+<a class="header" href="#html-파싱--dom-tree-빌드" id="html-파싱--dom-tree-빌드"><h3>HTML 파싱 / DOM Tree 빌드</h3></a>
+<p>컴파일러는 Source Code를 기계어로 변환한다.</p>
+<p><img src="https://user-images.githubusercontent.com/24724691/62412956-4731fb00-b644-11e9-8614-977ad4a5cc73.png" alt="compilation" /></p>
+<p>위 그림은 그 변환 과정 중 하나인 parsing 과정이다.</p>
+<p>문서는 lexer(tokenizer)와 parser(syntax 분석)가 함께 작업하여 tree를 만든다.</p>
+<p>브라우저도 마찬가지다.</p>
+<p>브라우저는 HTML 문서를 파싱해 DOM Tree를 만든다.
+모든 HTML 태그에는 노드가 있고 각각의 노드는 Tree형태로 구현된다.</p>
+<p><img src="https://user-images.githubusercontent.com/24724691/62413000-fd95e000-b644-11e9-9fd0-059f49f6cf48.png" alt="Domtree" /></p>
+<a class="header" href="#cssom-tree-빌드" id="cssom-tree-빌드"><h3>CSSOM Tree 빌드</h3></a>
+<p>HTML 파싱 중 CSS 링크를 만나면 리소스를 받아온다.
+같은 프로세스로 CSS도 Tree형태로 만들어진다.</p>
+<p>이를 CSSOM(CSS Object Model)이라고 부른다.</p>
+<p><img src="https://user-images.githubusercontent.com/24724691/62413025-52395b00-b645-11e9-9c88-3c3dafedbe46.png" alt="CSSOM" /></p>
+<a class="header" href="#script-and-css-in-html-parsing" id="script-and-css-in-html-parsing"><h4>script and css in HTML parsing</h4></a>
+<p>HTML parsing과정에서 코드를 읽는 중 script나 css만난 경우 어떻게 처리될까?</p>
+<ul>
+<li>
+<p>script</p>
+<p>script는 기본적으로 parsing을 중단(block)시킨다.
+script가 외부에 있다면 네트워크 과정을 기다린다.
+이는 HTML4, 5의 spec에도 명시되어 있다.
+이러한 중단을 막고자 4에서는 defer, 5에서는 async라는 옵션이 추가되었다.</p>
+<p>최근에는 외부 script의 parsing은 main parser가 하지 않으며 별도의 쓰레드에서 작업한다.</p>
+</li>
+<li>
+<p>css</p>
+<p>이론적으로 css는 dom tree를 수정하지 않기 때문에 block하지 않는다. 하지만 script가 css 정보를 이용해야 하는 경우가 있다. 이 경우 브라우저 엔진이 최적화 작업을 진행하여 문제가 될 경우만 block한다.</p>
+</li>
+</ul>
+<a class="header" href="#render-tree-생성" id="render-tree-생성"><h3>Render Tree 생성</h3></a>
+<p>DOM Tree와 CSSOM를 결합하여 Render Tree를 만든다.</p>
+<p><img src="https://user-images.githubusercontent.com/24724691/62413187-ee646180-b647-11e9-960f-06d2a85cdcff.png" alt="render-tree" /></p>
+<p><img src="https://user-images.githubusercontent.com/24724691/62413188-ef958e80-b647-11e9-9975-b6bf1c5a8c09.png" alt="render-tree2" /></p>
+<p>위 그림들은 Render Tree를 추상화 한 그림이다.</p>
+<p>Render Tree는 DOM Tree에 있는 것 중에 실제 보이는 것들로만 구성한다.</p>
+<p><strong>ex) style='display : none;'은 Render Tree에서 제외된다. Header 역시 제외된다.</strong></p>
+<a class="header" href="#layoutreflow" id="layoutreflow"><h3>Layout(Reflow)</h3></a>
+<p>Render Tree가 만들어진 뒤 기기의 viewport를 기준으로 노드들의 정확한 위치와 크기를 계산하는 과정이다.</p>
+<p>위치와 관련된 속성(position, width, height 등)들을 계산한다.</p>
+<p><strong>ex) width:100%인 상태에서 브라우저를 resize하면, Render Tree는 변경되지 않고 Layout 이후 과정만 다시 거치게 된다.</strong></p>
+<a class="header" href="#paint" id="paint"><h3>Paint</h3></a>
+<p>실제 웹페이지를 화면에 그리는 작업이다.</p>
+<p>렌더러의 &quot;paint&quot; 메서드가 호출된다.</p>
+<p><strong>색이 바뀐다거나 노드의 스타일이 바뀌는 것으로는 Layout 과정을 거치지 않고 Paint만 일어난다.</strong></p>
+<a class="header" href="#modern-browser" id="modern-browser"><h4>modern browser</h4></a>
+<p>최근의 브라우저들은 Critical Rendering Path에 몇 가지 과정이 추가된다.</p>
+<ol>
+<li>
+<p>layout 과정 이후 Update Layer Tree라는 단계가 생겼다.</p>
+<p>Render Object는 layout 이후 정해진 기준에 따라 layer를 나누게 된다.</p>
+<p>여기에서 layer는 포토샵의 layer와 비슷한 개념이다.
+<a href="https://github.com/Im-D/Dev-Docs/blob/master/Browser/Layer_Model.md">Layer Model</a>로 글을 대체한다.</p>
+<p>Layer는 Render Layer와 Graphics Layer 두 종류가 있는데 이 두 기준으로 Layer Tree를 만든다.</p>
+</li>
+<li>
+<p>각각의 layer는 paint 과정을 거친 후 composite layers이라는 새로운 과정을 거친다.</p>
+<p>layer들을 합성하여 하나의 bitmap으로 만든 뒤 최종 page를 만든다.</p>
+</li>
+</ol>
+<a class="header" href="#reference" id="reference"><h4>Reference</h4></a>
+<ul>
+<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58944/">edwidth - 부스트코스 웹 백엔드</a></li>
+<li><a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/">How Browsers Work: Behind the scenes of modern web browsers</a></li>
+<li><a href="http://d2.naver.com/helloworld/59361">Naver D2 - 브라우저의 작동 원리(위 글 번역)</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/?hl=ko">critical rendering path</a></li>
+<li><a href="https://tv.naver.com/v/4578425">웹 성능 최적화에 필요한 브라우저의 모든 것</a></li>
 </ul>
 
                     </main>
