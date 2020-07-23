@@ -19,3 +19,4 @@ The goal of this repository is to understand `BackEnd` and to become familiar wi
 ### 🚀 Web
 
 - [HTTP](https://github.com/BKJang/do-you-know-backend/issues/6)
+- [Web Browser](https://github.com/BKJang/do-you-know-backend/issues/7)
