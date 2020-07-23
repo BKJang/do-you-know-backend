@@ -3,27 +3,27 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Do you know backend?</title>
+        <title>Web - Do you know backend?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -33,7 +33,7 @@
     <body class="light">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = "light";
         </script>
 
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li></ol></li><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="database/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> DBMS</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li></ol></li><li><a href="../web/01-HTTP.html" class="active"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="../database/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> DBMS</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -144,7 +144,7 @@
                         <h1 class="menu-title">Do you know backend?</h1> 
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
@@ -176,197 +176,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#dbms" id="dbms"><h1>DBMS</h1></a>
-<p>우선 <code>DBMS</code>를 알기 이전에 <code>Database</code>에 대해서 한 번 짚고 넘어갈 필요가 있다.</p>
-<a class="header" href="#database" id="database"><h3>Database?</h3></a>
-<ul>
-<li>데이터의 집합 (a Set of Data)이다.</li>
-<li>여러 애플리케이션들의 통합된 정보들을 저장하여 운영할 수 있는 공용(share) 데이터의 집합이다.</li>
-</ul>
-<p>Database는 데이터의 집합이기 때문에 효율적으로 저장(C), 검색(R), 갱신(U), 삭제(D)할 수 있도록 데이터 집합들끼리 연관시키고 조직화되어야 한다.</p>
-<a class="header" href="#특성" id="특성"><h4>특성</h4></a>
-<ul>
-<li>
-<p>실시간 접근성(Real-time Accessability)</p>
-<ul>
-<li>사용자의 요구를 즉시 처리할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>계속적인 변화(Continuous Evolution)</p>
-<ul>
-<li>정확한 값을 유지하려고 삽입·삭제·수정 작업 등을 이용해 데이터를 지속적으로 갱신할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>동시 공유성(Concurrent Sharing)</p>
-<ul>
-<li>사용자마다 서로 다른 목적으로 사용하므로 동시에 여러 사람이 동일한 데이터에 접근하고 이용할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>내용 참조(Content Reference)</p>
-<ul>
-<li>저장한 데이터 레코드의 위치나 주소가 아닌 사용자가 요구하는 데이터의 내용, 즉 데이터 값에 따라 참조할 수 있어야 한다.</li>
-</ul>
-</li>
-</ul>
-<a class="header" href="#dbmsdatabase-management-system" id="dbmsdatabase-management-system"><h3>DBMS(Database Management System)</h3></a>
-<p><code>DBMS</code>란 용어에서 알 수 있듯이 데이터베이스를 관리하는 시스템 즉, 소프트웨어다.
-<code>DBMS</code>를 통해 우리는 위에서 살펴보았던 데이터베이스의 특성들을 보다 쉽고 효율적으로 보장할 수 있다.</p>
-<p><code>DBMS</code>의 필수 기능에는 3가지가 있는데 <code>정의</code>, <code>조작</code>, <code>제어</code>가 있다.</p>
-<ul>
-<li>정의 : 데이터 베이스의 논리적, 물리적 구조를 정의하는 기능.</li>
-<li>조작 : 데이터를 검색, 삭제, 갱신, 삽입, 삭제하는 기능.</li>
-<li>제어 : 데이터베이스의 내용 정확성과 안전성을 유지하도록 제어하는 기능.</li>
-</ul>
-<a class="header" href="#장단점" id="장단점"><h4>장/단점</h4></a>
-<ul>
-<li>
-<p>장점</p>
-<ul>
-<li>데이터 중복이 최소화</li>
-<li>데이터의 일관성 및 무결성 유지</li>
-<li>데이터 보안 보장</li>
-</ul>
-</li>
-<li>
-<p>단점</p>
-<ul>
-<li>비싼 운영비</li>
-<li>백업 및 복구에 대한 관리가 복잡</li>
-<li>부분적 데이터베이스 손실이 전체 시스템을 정지</li>
-</ul>
-</li>
-</ul>
-<p>위의 단점들이 있는 것이 사실이긴 하지만, 사실상 Database를 사용할 때 <code>DBMS</code>를 사용하지 않는 경우는 거의 없다고 보는게 맞을 것 같다.
-대표적인 <code>DBMS</code>의 종류에는 Oracle, SQL Server, MySQL, DB2 등이 있다.</p>
-<a class="header" href="#mysql-설치-및-실행mac-os-기준" id="mysql-설치-및-실행mac-os-기준"><h3>MySQL 설치 및 실행(Mac OS 기준)</h3></a>
-<ul>
-<li>설치</li>
-</ul>
-<pre><code class="language-sh">brew install mysql
-</code></pre>
-<ul>
-<li>실행 및 정지</li>
-</ul>
-<pre><code class="language-sh">mysql.server start
-mysql.server stop
-mysql.server restart
-</code></pre>
-<ul>
-<li>데몬으로 실행 및 정지
-<ul>
-<li>운영체제의 백그라운드로 MySQL이 계속 실행되도록 하고 싶다면 HomeBrew가 제공하는 명령을 이용하면 된다.</li>
-</ul>
-</li>
-</ul>
-<pre><code class="language-sh">brew services start mysql
-brew services stop mysql
-brew services restart mysql
-brew services list
-</code></pre>
-<hr />
-<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
-<ul>
-<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58930/">edwidth - 부스트코스 웹 백엔드</a></li>
-</ul>
-<a class="header" href="#dbms-1" id="dbms-1"><h1>DBMS</h1></a>
-<p>우선 <code>DBMS</code>를 알기 이전에 <code>Database</code>에 대해서 한 번 짚고 넘어갈 필요가 있다.</p>
-<a class="header" href="#database-1" id="database-1"><h3>Database?</h3></a>
-<ul>
-<li>데이터의 집합 (a Set of Data)이다.</li>
-<li>여러 애플리케이션들의 통합된 정보들을 저장하여 운영할 수 있는 공용(share) 데이터의 집합이다.</li>
-</ul>
-<p>Database는 데이터의 집합이기 때문에 효율적으로 저장(C), 검색(R), 갱신(U), 삭제(D)할 수 있도록 데이터 집합들끼리 연관시키고 조직화되어야 한다.</p>
-<a class="header" href="#특성-1" id="특성-1"><h4>특성</h4></a>
-<ul>
-<li>
-<p>실시간 접근성(Real-time Accessability)</p>
-<ul>
-<li>사용자의 요구를 즉시 처리할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>계속적인 변화(Continuous Evolution)</p>
-<ul>
-<li>정확한 값을 유지하려고 삽입·삭제·수정 작업 등을 이용해 데이터를 지속적으로 갱신할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>동시 공유성(Concurrent Sharing)</p>
-<ul>
-<li>사용자마다 서로 다른 목적으로 사용하므로 동시에 여러 사람이 동일한 데이터에 접근하고 이용할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>내용 참조(Content Reference)</p>
-<ul>
-<li>저장한 데이터 레코드의 위치나 주소가 아닌 사용자가 요구하는 데이터의 내용, 즉 데이터 값에 따라 참조할 수 있어야 한다.</li>
-</ul>
-</li>
-</ul>
-<a class="header" href="#dbmsdatabase-management-system-1" id="dbmsdatabase-management-system-1"><h3>DBMS(Database Management System)</h3></a>
-<p><code>DBMS</code>란 용어에서 알 수 있듯이 데이터베이스를 관리하는 시스템 즉, 소프트웨어다.
-<code>DBMS</code>를 통해 우리는 위에서 살펴보았던 데이터베이스의 특성들을 보다 쉽고 효율적으로 보장할 수 있다.</p>
-<p><code>DBMS</code>의 필수 기능에는 3가지가 있는데 <code>정의</code>, <code>조작</code>, <code>제어</code>가 있다.</p>
-<ul>
-<li>정의 : 데이터 베이스의 논리적, 물리적 구조를 정의하는 기능.</li>
-<li>조작 : 데이터를 검색, 삭제, 갱신, 삽입, 삭제하는 기능.</li>
-<li>제어 : 데이터베이스의 내용 정확성과 안전성을 유지하도록 제어하는 기능.</li>
-</ul>
-<a class="header" href="#장단점-1" id="장단점-1"><h4>장/단점</h4></a>
-<ul>
-<li>
-<p>장점</p>
-<ul>
-<li>데이터 중복이 최소화</li>
-<li>데이터의 일관성 및 무결성 유지</li>
-<li>데이터 보안 보장</li>
-</ul>
-</li>
-<li>
-<p>단점</p>
-<ul>
-<li>비싼 운영비</li>
-<li>백업 및 복구에 대한 관리가 복잡</li>
-<li>부분적 데이터베이스 손실이 전체 시스템을 정지</li>
-</ul>
-</li>
-</ul>
-<p>위의 단점들이 있는 것이 사실이긴 하지만, 사실상 Database를 사용할 때 <code>DBMS</code>를 사용하지 않는 경우는 거의 없다고 보는게 맞을 것 같다.
-대표적인 <code>DBMS</code>의 종류에는 Oracle, SQL Server, MySQL, DB2 등이 있다.</p>
-<a class="header" href="#mysql-설치-및-실행mac-os-기준-1" id="mysql-설치-및-실행mac-os-기준-1"><h3>MySQL 설치 및 실행(Mac OS 기준)</h3></a>
-<ul>
-<li>설치</li>
-</ul>
-<pre><code class="language-sh">brew install mysql
-</code></pre>
-<ul>
-<li>실행 및 정지</li>
-</ul>
-<pre><code class="language-sh">mysql.server start
-mysql.server stop
-mysql.server restart
-</code></pre>
-<ul>
-<li>데몬으로 실행 및 정지
-<ul>
-<li>운영체제의 백그라운드로 MySQL이 계속 실행되도록 하고 싶다면 HomeBrew가 제공하는 명령을 이용하면 된다.</li>
-</ul>
-</li>
-</ul>
-<pre><code class="language-sh">brew services start mysql
-brew services stop mysql
-brew services restart mysql
-brew services list
-</code></pre>
-<hr />
-<a class="header" href="#-reference-1" id="-reference-1"><h4>🙏 Reference</h4></a>
-<ul>
-<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58930/">edwidth - 부스트코스 웹 백엔드</a></li>
-</ul>
-<a class="header" href="#http" id="http"><h1>HTTP</h1></a>
+                        <a class="header" href="#http" id="http"><h1>HTTP</h1></a>
 <p>대부분의 개발자들이 애플리케이션을 개발하다보면 자연스럽게 HTTP를 경험하게 된다. 다만, 너무 당연히 사용되고 있는 것이다보니 이를 잘 모르고 넘어가는 경우가 많다.</p>
 <a class="header" href="#protocol" id="protocol"><h2>Protocol</h2></a>
 <p>우선 <code>Protocol</code>이란 용어를 알고 넘어갈 필요가 있다. <code>HTTP</code>를 많이 들어봤지만 &quot;그래서 이게 뭔데?&quot; 라는 생각이 들 수 있다. <code>HTTP</code>는 <code>Protocol</code>의 일종이며, <code>Protocol</code>은 컴퓨터나 원거리 통신 장비 사이에 메세지를 주고 받는 양식과 규칙의 체계이다.</p>
@@ -398,7 +208,7 @@ brew services list
 <p>즉, 비대칭키 암호화 기법을 이용해 암호화된 데이터를 서버로 전송하는 과정에서 SSL 인증을 받은 데이터만 서버에서는 신뢰하는 것이다.</p>
 <p>하지만 이 방식은 느릴 수 있기 때문에 대칭키 암호화와 비대칭키 암호화를 같이 사용하기도 한다.</p>
 <hr />
-<a class="header" href="#-reference-2" id="-reference-2"><h4>🙏 Reference</h4></a>
+<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
 <li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58942/">edwidth - 부스트코스 웹 백엔드</a></li>
 <li><a href="https://github.com/im-d-team/Dev-Docs/blob/master/Network/HTTP%20vs%20WebSocket.md">Im-D/Dev-Docs - HTTP와 WebSocket</a></li>
@@ -407,14 +217,21 @@ brew services list
 <li><a href="http://mohwaproject.tistory.com/entry/HTTPS%EB%9E%80">무하프로젝트 - HTTP, HTTPS 프로토콜이란? </a></li>
 <li><a href="https://opentutorials.org/course/228/4894">HTTPS와 SSL 인증서</a></li>
 </ul>
-<a class="header" href="#dbms-2" id="dbms-2"><h1>DBMS</h1></a>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../database/01-DBMS.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
+                        
+                            <a rel="next" href="../database/01-HTTP.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -424,7 +241,15 @@ brew services list
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="../database/01-DBMS.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
+                
+                    <a href="../database/01-HTTP.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
@@ -437,26 +262,18 @@ brew services list
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
 
-        
-        
-        <script type="text/javascript">
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
-        
         
 
     </body>
