@@ -50,7 +50,7 @@
 
 비대칭키 암호화 기법은 암호화와 복호화를 하기 위한 키가 다르다는 것이다. 즉 암호화를 하는 방법과 복호화를 하는 방법이 다르기 때문에 중간에 암호화된 데이터가 탈취된다고 해도 복호화를 할 방법이 없다. 
 
-![https_asymmetric_key](/img/https_asymmetric_key.png)
+![https_asymmetric_key](https://user-images.githubusercontent.com/24209005/88266818-d1b6b300-cd0a-11ea-9792-e53c9b988c3f.png)
 
 하지만 여기서 생각해봐야 할 것이 있는데 **'서버로 전송된 데이터가 클라이언트에서 전송한 것인지, 안전한 데이터라고 확신할 수 있을까?'** 라는 것이다.
 
