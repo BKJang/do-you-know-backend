@@ -20,3 +20,4 @@ The goal of this repository is to understand `BackEnd` and to become familiar wi
 
 - [HTTP](https://github.com/BKJang/do-you-know-backend/issues/6)
 - [Web Browser](https://github.com/BKJang/do-you-know-backend/issues/7)
+- [Web Server vs WAS](https://github.com/BKJang/do-you-know-backend/issues/8)
