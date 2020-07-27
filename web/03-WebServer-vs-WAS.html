@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>DBMS - Do you know backend?</title>
+        <title>Web Server vs WAS - Do you know backend?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="../database/01-DBMS.html" class="active"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="../database/01-DBMS.html" class="active"><strong aria-hidden="true">1.1.</strong> DBMS</a></li></ol></li><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="../web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="../web/03-WebServer-vs-WAS.html"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li></ol></li><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="../web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="../web/03-WebServer-vs-WAS.html" class="active"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,100 +176,89 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#dbms" id="dbms"><h1>DBMS</h1></a>
-<p>우선 <code>DBMS</code>를 알기 이전에 <code>Database</code>에 대해서 한 번 짚고 넘어갈 필요가 있다.</p>
-<a class="header" href="#database" id="database"><h3>Database?</h3></a>
+                        <a class="header" href="#web-server-vs-was" id="web-server-vs-was"><h1>Web Server vs WAS</h1></a>
+<a class="header" href="#웹-서버web-server" id="웹-서버web-server"><h2>웹 서버(Web Server)</h2></a>
 <ul>
-<li>데이터의 집합 (a Set of Data)이다.</li>
-<li>여러 애플리케이션들의 통합된 정보들을 저장하여 운영할 수 있는 공용(share) 데이터의 집합이다.</li>
+<li>웹 서버는 소프트웨어(Software)를 보통 말하지만, 웹 서버 소프트웨어가 동작하는 컴퓨터를 말한다.</li>
+<li>웹 서버의 가장 중요한 기능은 클라이언트(Client)가 요청하는 HTML 문서나 각종 리소스(Resource)를 전달하는 것이다.</li>
+<li>웹 브라우저나 웹 크롤러가 요청하는 리소스는 컴퓨터에 저장된 정적(static)인 데이터이거나 동적인 결과가 될 수 있다.</li>
 </ul>
-<p>Database는 데이터의 집합이기 때문에 효율적으로 저장(C), 검색(R), 갱신(U), 삭제(D)할 수 있도록 데이터 집합들끼리 연관시키고 조직화되어야 한다.</p>
-<a class="header" href="#특성" id="특성"><h4>특성</h4></a>
-<ul>
+<p>클라이언트와 서버간에 일어나는 로직의 순서는 다음과 같다.</p>
+<ol>
 <li>
-<p>실시간 접근성(Real-time Accessability)</p>
-<ul>
-<li>사용자의 요구를 즉시 처리할 수 있다.</li>
-</ul>
+<p>클라이언트가 요청한 문서나 자원을 전달하는 역할을 한다.</p>
 </li>
 <li>
-<p>계속적인 변화(Continuous Evolution)</p>
-<ul>
-<li>정확한 값을 유지하려고 삽입·삭제·수정 작업 등을 이용해 데이터를 지속적으로 갱신할 수 있다.</li>
-</ul>
+<p>클라이언트는 서버에게 서비스를 요청한다.</p>
 </li>
 <li>
-<p>동시 공유성(Concurrent Sharing)</p>
+<p>서버는 서비스를 제공한다.</p>
+</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/24209005/88495572-4cc2e680-cff5-11ea-83ef-a9dd55c5901b.png" alt="was1" /></p>
+<a class="header" href="#웹-서버-소프트웨어의-종류" id="웹-서버-소프트웨어의-종류"><h3>웹 서버 소프트웨어의 종류</h3></a>
 <ul>
-<li>사용자마다 서로 다른 목적으로 사용하므로 동시에 여러 사람이 동일한 데이터에 접근하고 이용할 수 있다.</li>
+<li>가장 많이 사용하는 웹 서버는 Apache, Nginx, Microsoft IIS</li>
+<li>Apache웹 서버는 Apache Software Foundation에서 개발한 웹서버로 오픈소스 소프트웨어(Open-source Software)이며, 거의 대부분 운영체제에서 설치 및 사용을 할 수 있다.</li>
+<li>Nginx는 차세대 웹서버로 불리며 더 적은 자원으로 더 빠르게 데이터를 서비스하는 것을 목적으로 만들어진 서버이며 Apache웹 서버와 마찬가지로 오픈소스 소프트웨어다.</li>
+</ul>
+<a class="header" href="#2-tier-architecture" id="2-tier-architecture"><h2>2-Tier Architecture</h2></a>
+<p><img src="https://user-images.githubusercontent.com/24209005/88495570-4c2a5000-cff5-11ea-9635-2fcd3fc2d6ca.png" alt="was2" /></p>
+<a class="header" href="#dbmsdata-base-management-system" id="dbmsdata-base-management-system"><h3>DBMS(Data Base Management System)</h3></a>
+<p>DBMS등장 이전에는 데이터를 저장하고 불러오는것을 직접 구현 해야했다. 하지만, 데이터가 많아지며 별도의 관리가 필요해졌고 DBMS가 등장하였다.</p>
+<p>DMBS는 보통 서버 형태로 서비스를 제공한다. 따라서 DBMS에 직접 접속해서 동작하는 클라이언트 프로그램이 만들어졌다.</p>
+<p>이러한 방식은 클라이언트의 로직이 많아지고, 클라이언트 프로그램의 크기가 커지며, 로직이 변경되면 클라이언트가 새로 배포되어야 한다.</p>
+<p>또한, 로직이 클라이언트에 포함되어 배포되기 때문에 보안이 나쁘다.</p>
+<a class="header" href="#cgicommon-gateway-interface" id="cgicommon-gateway-interface"><h3>CGI(Common Gateway Interface)</h3></a>
+<p>초기 웹은 정적 데이터만 보여줬다. 웹 서버 본연의 기능은 미리 준비된 정보(정적 리소스)를 클라이언트의 요청에 따라 응답해주는 것이기 때문이다.</p>
+<p>웹이 발전하며 동적인 기능을 요구하기 시작했다. 지금은 너무 당연하지만, 웹에서 데이터를 입력하고 조회하는 것 또한 동적인 기능이다.</p>
+<p>당연히, 이러한 기능들은 별도의 프로그래밍을 통해 구현해야 한다. 이를 위해 웹 서버에서 프로그래밍 기능이 들어가는 방식을 CGI라고 한다.</p>
+<blockquote>
+<p>서버 프로그램 내부의 프로그램에서 처리한 결과를 클라이언트에 응답하도록 서버와 내부 프로그램을 이어주는 방법 혹은 규칙이 CGI이다.</p>
+</blockquote>
+<p>단순한 프로그래밍에서는 문제가 없었다. 하지만, 프로그램이 복잡해지고 DBMS와 연계되는 작업이 많아지면서 사용자가 증가할수록 성능이 떨어지는 문제가 발생했다.</p>
+<a class="header" href="#3-tier-architecture" id="3-tier-architecture"><h2>3-Tier Architecture</h2></a>
+<p><img src="https://user-images.githubusercontent.com/24209005/88495567-4a608c80-cff5-11ea-833a-5aff36a9afd8.png" alt="was3" /></p>
+<a class="header" href="#미들웨어middleware" id="미들웨어middleware"><h3>미들웨어(MiddleWare)</h3></a>
+<p>2-Tier Architecture의 단점으로 미들웨어가 등장하게 되었다. 클라이언트와 데이터베이스 서버 사이에 다른 서버를 두는 방식이다.</p>
+<p>클라이언트는 요청만 보내고, 미들웨어에서 로직을 수행한다. 만약, 데이터 조작이 필요하면 미들웨어가 DBMS에 작업을 맡기고 그 결과를 클라이언트에게 전달한다.</p>
+<p>클라이언트는 응답을 받아서 출력만 하면되고, 미들웨어에 요청만 보내면 되기 때문에 프로그램의 크기가 줄어든다. 또한, 로직이 바뀌어도 다시 배포할 필요 없이 미들웨어만 수정하면 된다.</p>
+<a class="header" href="#wasweb-application-server" id="wasweb-application-server"><h2>WAS(Web Application Server)</h2></a>
+<p>넓은 의미에서 미들웨어라고 할 수 있다.</p>
+<p>웹 클라이언트의 요청 중 웹 애플리케이션이 동작하도록 지원하는 목적을 가진다.</p>
+<a class="header" href="#기능" id="기능"><h3>기능</h3></a>
+<ul>
+<li>프로그램 실행환경과 데이터 베이스 접속 기능을 제공한다.</li>
+<li>여러 개의 트랜젝션을 관리한다.</li>
+<li>업무 처리 비즈니스 로직을 수행한다.</li>
+</ul>
+<p>이외에도 웹 서버의 기능도 기본적으로 제공한다(톰캣만 설치해도 별도의 웹 서버가 필요 없는 이유이다). 하지만, 초창기의 WAS는 내장 웹서버의 성능이 좋지 않았다. 따라서 아파치 서버와 톰캣 서버를 함께 실행을 해서 사용하는 경우가 많았다. 하지만, 현재는 WAS에 내장되어 있는 웹 서버의 성능이 많이 개선되어 톰캣만으로도 충분히 동작하는 경우가 많아졌다.</p>
+<p>하지만, 그럼에도 큰 규모의 프로젝트에서는 웹 서버에서 정적인 컨텐츠를 웹 브라우저로 전송하고, WAS는 동적인 결과를 전송하는 역할을 하도록 나눈다.</p>
+<p><img src="https://user-images.githubusercontent.com/24209005/88495563-47fe3280-cff5-11ea-98ee-a7b34edbe896.png" alt="was4" /></p>
+<a class="header" href="#was와-웹-서버를-나누는-이유" id="was와-웹-서버를-나누는-이유"><h3>WAS와 웹 서버를 나누는 이유</h3></a>
+<ul>
+<li>자원 이용의 효율성
+<ul>
+<li>웹 서버는 보다 간단하게 만들어졌다. 따라서, 정적인 동작은 웹 서버에서 하는 것이 더 효율적이다.</li>
 </ul>
 </li>
-<li>
-<p>내용 참조(Content Reference)</p>
+<li>장애 극복(failvoer)
 <ul>
-<li>저장한 데이터 레코드의 위치나 주소가 아닌 사용자가 요구하는 데이터의 내용, 즉 데이터 값에 따라 참조할 수 있어야 한다.</li>
-</ul>
+<li>WAS에서 동작하도록 만든 프로그램이 오작동하여 WAS자체에 문제가 발생할 수 있다. 따라서 WAS를 재시작 해야 하는 경우가 생길 수 있다. 만약 WAS 서버가 여러개 있다면, 문제가 발생한 WAS에 웹 서버에서 클라이언트가 접근 하지 못하게 한 뒤  WAS의 문제를 처리할 수 있다. 따라서, 무중단으로 서비스를 운영할 수 있다.
+<blockquote>
+<p>참고 - <a href="https://github.com/Im-D/Dev-Docs/blob/master/Network/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1%20&amp;%20%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81.md">로드밸런싱과 클러스터링</a></p>
+</blockquote>
 </li>
 </ul>
-<a class="header" href="#dbmsdatabase-management-system" id="dbmsdatabase-management-system"><h3>DBMS(Database Management System)</h3></a>
-<p><code>DBMS</code>란 용어에서 알 수 있듯이 데이터베이스를 관리하는 시스템 즉, 소프트웨어다.
-<code>DBMS</code>를 통해 우리는 위에서 살펴보았던 데이터베이스의 특성들을 보다 쉽고 효율적으로 보장할 수 있다.</p>
-<p><code>DBMS</code>의 필수 기능에는 3가지가 있는데 <code>정의</code>, <code>조작</code>, <code>제어</code>가 있다.</p>
-<ul>
-<li>정의 : 데이터 베이스의 논리적, 물리적 구조를 정의하는 기능.</li>
-<li>조작 : 데이터를 검색, 삭제, 갱신, 삽입, 삭제하는 기능.</li>
-<li>제어 : 데이터베이스의 내용 정확성과 안전성을 유지하도록 제어하는 기능.</li>
-</ul>
-<a class="header" href="#장단점" id="장단점"><h4>장/단점</h4></a>
-<ul>
-<li>
-<p>장점</p>
-<ul>
-<li>데이터 중복이 최소화</li>
-<li>데이터의 일관성 및 무결성 유지</li>
-<li>데이터 보안 보장</li>
-</ul>
 </li>
-<li>
-<p>단점</p>
-<ul>
-<li>비싼 운영비</li>
-<li>백업 및 복구에 대한 관리가 복잡</li>
-<li>부분적 데이터베이스 손실이 전체 시스템을 정지</li>
+<li>배포 및 유지 보수의 편의성</li>
 </ul>
-</li>
-</ul>
-<p>위의 단점들이 있는 것이 사실이긴 하지만, 사실상 Database를 사용할 때 <code>DBMS</code>를 사용하지 않는 경우는 거의 없다고 보는게 맞을 것 같다.
-대표적인 <code>DBMS</code>의 종류에는 Oracle, SQL Server, MySQL, DB2 등이 있다.</p>
-<a class="header" href="#mysql-설치-및-실행mac-os-기준" id="mysql-설치-및-실행mac-os-기준"><h3>MySQL 설치 및 실행(Mac OS 기준)</h3></a>
+<a class="header" href="#pray-reference" id="pray-reference"><h4>:pray: Reference</h4></a>
 <ul>
-<li>설치</li>
-</ul>
-<pre><code class="language-sh">brew install mysql
-</code></pre>
-<ul>
-<li>실행 및 정지</li>
-</ul>
-<pre><code class="language-sh">mysql.server start
-mysql.server stop
-mysql.server restart
-</code></pre>
-<ul>
-<li>데몬으로 실행 및 정지
-<ul>
-<li>운영체제의 백그라운드로 MySQL이 계속 실행되도록 하고 싶다면 HomeBrew가 제공하는 명령을 이용하면 된다.</li>
-</ul>
-</li>
-</ul>
-<pre><code class="language-sh">brew services start mysql
-brew services stop mysql
-brew services restart mysql
-brew services list
-</code></pre>
-<hr />
-<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
-<ul>
-<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58930/">edwidth - 부스트코스 웹 백엔드</a></li>
+<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58946">edwidth - 부스트코스 웹 백엔드</a></li>
+<li><a href="http://www.ktword.co.kr/word/abbr_view.php?m_temp1=651&amp;m_search=cgi">CGI - 정보통신기술용어해설</a></li>
+<li><a href="https://whatis.techtarget.com/definition/common-gateway-interface-CGI">common gateway interface (CGI)</a></li>
+<li><a href="http://www.softwaretestingclass.com/what-is-difference-between-two-tier-and-three-tier-architecture/">What is Difference Between Two-Tier and Three-Tier Architecture?</a></li>
 </ul>
 
                     </main>
@@ -277,15 +266,11 @@ brew services list
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../database/01-DBMS.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../web/02-Browser.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="../database/01-DBMS.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -295,15 +280,11 @@ brew services list
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../database/01-DBMS.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../web/02-Browser.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="../database/01-DBMS.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
