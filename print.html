@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li></ol></li><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="web/03-WebServer-vs-WAS.html"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li><li><a href="database/02-SQL.html"><strong aria-hidden="true">1.2.</strong> SQL</a></li></ol></li><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="web/03-WebServer-vs-WAS.html"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -366,6 +366,99 @@ brew services list
 <ul>
 <li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58930/">edwidth - 부스트코스 웹 백엔드</a></li>
 </ul>
+<a class="header" href="#sql" id="sql"><h1>SQL</h1></a>
+<p>SQL은 데이터를 보다 쉽게 검색하고 추가, 삭제, 수정 같은 조작을 할 수 있도록 고안된 컴퓨터 언어이며 관계형 데이터베이스에서 데이터를 조작하고 쿼리하는 표준 수단이다.</p>
+<a class="header" href="#dmldata-manipulation-language" id="dmldata-manipulation-language"><h3>DML(Data Manipulation Language)</h3></a>
+<ul>
+<li><strong>데이터를 조작</strong>하기 위해 사용한다.</li>
+<li>INSERT, UPDATE, DELETE, SELECT</li>
+</ul>
+<a class="header" href="#select" id="select"><h4>SELECT</h4></a>
+<pre><code class="language-sql">select empno, name, job from employee order by name;
+</code></pre>
+<a class="header" href="#insert" id="insert"><h4>INSERT</h4></a>
+<pre><code class="language-sql">insert into 테이블명(필드1, 필드2, 필드3, 필드4, … ) 
+values ( 필드1의 값, 필드2의 값, 필드3의 값, 필드4의 값, … )
+</code></pre>
+<pre><code class="language-sql">insert into ROLE (role_id, description)
+values ( 200, 'CEO');
+</code></pre>
+<a class="header" href="#update" id="update"><h4>UPDATE</h4></a>
+<pre><code class="language-sql">update  테이블명
+set  필드1=필드1의값, 필드2=필드2의값, 필드3=필드3의값, …
+where 조건식
+</code></pre>
+<pre><code class="language-sql">update ROLE
+set description = 'CTO'
+where role_id = 200;
+</code></pre>
+<a class="header" href="#delete" id="delete"><h4>DELETE</h4></a>
+<pre><code class="language-sql">delete
+from  테이블명
+where  조건식
+</code></pre>
+<pre><code class="language-sql">delete
+from ROLE
+where role_id = 200;
+</code></pre>
+<a class="header" href="#ddldata-definition-language" id="ddldata-definition-language"><h3>DDL(Data Definition Language)</h3></a>
+<ul>
+<li>데이터베이스의 <strong>스키마를 정의하거나 조작</strong>하기 위해 사용</li>
+<li>CREATE, DROP, ALTER</li>
+</ul>
+<a class="header" href="#create" id="create"><h4>CREATE</h4></a>
+<pre><code class="language-sql">create table 테이블명( 
+  필드명1 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
+  필드명2 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
+  필드명3 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
+  ........... 
+  PRIMARY KEY(필드명) 
+);
+</code></pre>
+<pre><code class="language-sql">create table EMPLOYEE2(   
+  empno      INTEGER NOT NULL PRIMARY KEY,  
+  name       VARCHAR(10),   
+  job        VARCHAR(9),   
+  boss       INTEGER,   
+  hiredate   VARCHAR(12),   
+  salary     DECIMAL(7, 2),   
+  comm       DECIMAL(7, 2),   
+  deptno     INTEGER
+);
+</code></pre>
+<a class="header" href="#alter" id="alter"><h4>ALTER</h4></a>
+<pre><code class="language-sql">alter table 테이블명
+add  필드명 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT];
+</code></pre>
+<pre><code class="language-sql">alter table EMPLOYEE2
+add birthdate varchar(12);
+</code></pre>
+<a class="header" href="#drop" id="drop"><h4>DROP</h4></a>
+<pre><code class="language-sql">drop table 테이블이름;
+</code></pre>
+<pre><code class="language-sql">drop table EMPLOYEE2;
+</code></pre>
+<a class="header" href="#dcldata-control-language" id="dcldata-control-language"><h3>DCL(Data Control Language)</h3></a>
+<ul>
+<li><strong>데이터를 제어</strong>하기 위해 사용한다.</li>
+<li>권한을 관리하고, 테이터의 보안, 무결성 등을 정의한다.</li>
+<li>GRANT, REVOKE</li>
+</ul>
+<a class="header" href="#사용자-생성-및-권한-부여" id="사용자-생성-및-권한-부여"><h4>사용자 생성 및 권한 부여</h4></a>
+<ul>
+<li>db이름 뒤의 * 는 모든 권한을 의미한다.</li>
+<li>@’%’는 어떤 클라이언트에서든 접근 가능하다는 의미이고, @’localhost’는 해당 컴퓨터에서만 접근 가능하다는 의미다.</li>
+<li>flush privileges는 DBMS에게 적용을 하라는 의미다.</li>
+</ul>
+<pre><code class="language-sql">grant all privileges on db이름.* to 계정이름@'%' identified by ＇암호’;
+grant all privileges on db이름.* to 계정이름@'localhost' identified by ＇암호’;
+flush privileges;
+</code></pre>
+<hr />
+<a class="header" href="#-reference-2" id="-reference-2"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58934/">edwidth - 부스트코스 웹 백엔드</a></li>
+</ul>
 <a class="header" href="#http" id="http"><h1>HTTP</h1></a>
 <p>대부분의 개발자들이 애플리케이션을 개발하다보면 자연스럽게 HTTP를 경험하게 된다. 다만, 너무 당연히 사용되고 있는 것이다보니 이를 잘 모르고 넘어가는 경우가 많다.</p>
 <a class="header" href="#protocol" id="protocol"><h2>Protocol</h2></a>
@@ -398,7 +491,7 @@ brew services list
 <p>즉, 비대칭키 암호화 기법을 이용해 암호화된 데이터를 서버로 전송하는 과정에서 SSL 인증을 받은 데이터만 서버에서는 신뢰하는 것이다.</p>
 <p>하지만 이 방식은 느릴 수 있기 때문에 대칭키 암호화와 비대칭키 암호화를 같이 사용하기도 한다.</p>
 <hr />
-<a class="header" href="#-reference-2" id="-reference-2"><h4>🙏 Reference</h4></a>
+<a class="header" href="#-reference-3" id="-reference-3"><h4>🙏 Reference</h4></a>
 <ul>
 <li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58942/">edwidth - 부스트코스 웹 백엔드</a></li>
 <li><a href="https://github.com/im-d-team/Dev-Docs/blob/master/Network/HTTP%20vs%20WebSocket.md">Im-D/Dev-Docs - HTTP와 WebSocket</a></li>
@@ -439,7 +532,7 @@ brew services list
 <p>즉, 비대칭키 암호화 기법을 이용해 암호화된 데이터를 서버로 전송하는 과정에서 SSL 인증을 받은 데이터만 서버에서는 신뢰하는 것이다.</p>
 <p>하지만 이 방식은 느릴 수 있기 때문에 대칭키 암호화와 비대칭키 암호화를 같이 사용하기도 한다.</p>
 <hr />
-<a class="header" href="#-reference-3" id="-reference-3"><h4>🙏 Reference</h4></a>
+<a class="header" href="#-reference-4" id="-reference-4"><h4>🙏 Reference</h4></a>
 <ul>
 <li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58942/">edwidth - 부스트코스 웹 백엔드</a></li>
 <li><a href="https://github.com/im-d-team/Dev-Docs/blob/master/Network/HTTP%20vs%20WebSocket.md">Im-D/Dev-Docs - HTTP와 WebSocket</a></li>

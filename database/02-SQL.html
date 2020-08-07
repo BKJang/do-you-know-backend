@@ -3,27 +3,27 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Database - Do you know backend?</title>
+        <title>SQL - Do you know backend?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -33,7 +33,7 @@
     <body class="light">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = "light";
         </script>
 
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li><li><a href="database/02-SQL.html"><strong aria-hidden="true">1.2.</strong> SQL</a></li></ol></li><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="web/03-WebServer-vs-WAS.html"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li><li><a href="../database/02-SQL.html" class="active"><strong aria-hidden="true">1.2.</strong> SQL</a></li></ol></li><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="../web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="../web/03-WebServer-vs-WAS.html"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -144,7 +144,7 @@
                         <h1 class="menu-title">Do you know backend?</h1> 
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
@@ -176,100 +176,98 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#dbms" id="dbms"><h1>DBMS</h1></a>
-<p>우선 <code>DBMS</code>를 알기 이전에 <code>Database</code>에 대해서 한 번 짚고 넘어갈 필요가 있다.</p>
-<a class="header" href="#database" id="database"><h3>Database?</h3></a>
+                        <a class="header" href="#sql" id="sql"><h1>SQL</h1></a>
+<p>SQL은 데이터를 보다 쉽게 검색하고 추가, 삭제, 수정 같은 조작을 할 수 있도록 고안된 컴퓨터 언어이며 관계형 데이터베이스에서 데이터를 조작하고 쿼리하는 표준 수단이다.</p>
+<a class="header" href="#dmldata-manipulation-language" id="dmldata-manipulation-language"><h3>DML(Data Manipulation Language)</h3></a>
 <ul>
-<li>데이터의 집합 (a Set of Data)이다.</li>
-<li>여러 애플리케이션들의 통합된 정보들을 저장하여 운영할 수 있는 공용(share) 데이터의 집합이다.</li>
+<li><strong>데이터를 조작</strong>하기 위해 사용한다.</li>
+<li>INSERT, UPDATE, DELETE, SELECT</li>
 </ul>
-<p>Database는 데이터의 집합이기 때문에 효율적으로 저장(C), 검색(R), 갱신(U), 삭제(D)할 수 있도록 데이터 집합들끼리 연관시키고 조직화되어야 한다.</p>
-<a class="header" href="#특성" id="특성"><h4>특성</h4></a>
-<ul>
-<li>
-<p>실시간 접근성(Real-time Accessability)</p>
-<ul>
-<li>사용자의 요구를 즉시 처리할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>계속적인 변화(Continuous Evolution)</p>
-<ul>
-<li>정확한 값을 유지하려고 삽입·삭제·수정 작업 등을 이용해 데이터를 지속적으로 갱신할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>동시 공유성(Concurrent Sharing)</p>
-<ul>
-<li>사용자마다 서로 다른 목적으로 사용하므로 동시에 여러 사람이 동일한 데이터에 접근하고 이용할 수 있다.</li>
-</ul>
-</li>
-<li>
-<p>내용 참조(Content Reference)</p>
-<ul>
-<li>저장한 데이터 레코드의 위치나 주소가 아닌 사용자가 요구하는 데이터의 내용, 즉 데이터 값에 따라 참조할 수 있어야 한다.</li>
-</ul>
-</li>
-</ul>
-<a class="header" href="#dbmsdatabase-management-system" id="dbmsdatabase-management-system"><h3>DBMS(Database Management System)</h3></a>
-<p><code>DBMS</code>란 용어에서 알 수 있듯이 데이터베이스를 관리하는 시스템 즉, 소프트웨어다.
-<code>DBMS</code>를 통해 우리는 위에서 살펴보았던 데이터베이스의 특성들을 보다 쉽고 효율적으로 보장할 수 있다.</p>
-<p><code>DBMS</code>의 필수 기능에는 3가지가 있는데 <code>정의</code>, <code>조작</code>, <code>제어</code>가 있다.</p>
-<ul>
-<li>정의 : 데이터 베이스의 논리적, 물리적 구조를 정의하는 기능.</li>
-<li>조작 : 데이터를 검색, 삭제, 갱신, 삽입, 삭제하는 기능.</li>
-<li>제어 : 데이터베이스의 내용 정확성과 안전성을 유지하도록 제어하는 기능.</li>
-</ul>
-<a class="header" href="#장단점" id="장단점"><h4>장/단점</h4></a>
-<ul>
-<li>
-<p>장점</p>
-<ul>
-<li>데이터 중복이 최소화</li>
-<li>데이터의 일관성 및 무결성 유지</li>
-<li>데이터 보안 보장</li>
-</ul>
-</li>
-<li>
-<p>단점</p>
-<ul>
-<li>비싼 운영비</li>
-<li>백업 및 복구에 대한 관리가 복잡</li>
-<li>부분적 데이터베이스 손실이 전체 시스템을 정지</li>
-</ul>
-</li>
-</ul>
-<p>위의 단점들이 있는 것이 사실이긴 하지만, 사실상 Database를 사용할 때 <code>DBMS</code>를 사용하지 않는 경우는 거의 없다고 보는게 맞을 것 같다.
-대표적인 <code>DBMS</code>의 종류에는 Oracle, SQL Server, MySQL, DB2 등이 있다.</p>
-<a class="header" href="#mysql-설치-및-실행mac-os-기준" id="mysql-설치-및-실행mac-os-기준"><h3>MySQL 설치 및 실행(Mac OS 기준)</h3></a>
-<ul>
-<li>설치</li>
-</ul>
-<pre><code class="language-sh">brew install mysql
+<a class="header" href="#select" id="select"><h4>SELECT</h4></a>
+<pre><code class="language-sql">select empno, name, job from employee order by name;
 </code></pre>
-<ul>
-<li>실행 및 정지</li>
-</ul>
-<pre><code class="language-sh">mysql.server start
-mysql.server stop
-mysql.server restart
+<a class="header" href="#insert" id="insert"><h4>INSERT</h4></a>
+<pre><code class="language-sql">insert into 테이블명(필드1, 필드2, 필드3, 필드4, … ) 
+values ( 필드1의 값, 필드2의 값, 필드3의 값, 필드4의 값, … )
 </code></pre>
+<pre><code class="language-sql">insert into ROLE (role_id, description)
+values ( 200, 'CEO');
+</code></pre>
+<a class="header" href="#update" id="update"><h4>UPDATE</h4></a>
+<pre><code class="language-sql">update  테이블명
+set  필드1=필드1의값, 필드2=필드2의값, 필드3=필드3의값, …
+where 조건식
+</code></pre>
+<pre><code class="language-sql">update ROLE
+set description = 'CTO'
+where role_id = 200;
+</code></pre>
+<a class="header" href="#delete" id="delete"><h4>DELETE</h4></a>
+<pre><code class="language-sql">delete
+from  테이블명
+where  조건식
+</code></pre>
+<pre><code class="language-sql">delete
+from ROLE
+where role_id = 200;
+</code></pre>
+<a class="header" href="#ddldata-definition-language" id="ddldata-definition-language"><h3>DDL(Data Definition Language)</h3></a>
 <ul>
-<li>데몬으로 실행 및 정지
+<li>데이터베이스의 <strong>스키마를 정의하거나 조작</strong>하기 위해 사용</li>
+<li>CREATE, DROP, ALTER</li>
+</ul>
+<a class="header" href="#create" id="create"><h4>CREATE</h4></a>
+<pre><code class="language-sql">create table 테이블명( 
+  필드명1 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
+  필드명2 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
+  필드명3 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
+  ........... 
+  PRIMARY KEY(필드명) 
+);
+</code></pre>
+<pre><code class="language-sql">create table EMPLOYEE2(   
+  empno      INTEGER NOT NULL PRIMARY KEY,  
+  name       VARCHAR(10),   
+  job        VARCHAR(9),   
+  boss       INTEGER,   
+  hiredate   VARCHAR(12),   
+  salary     DECIMAL(7, 2),   
+  comm       DECIMAL(7, 2),   
+  deptno     INTEGER
+);
+</code></pre>
+<a class="header" href="#alter" id="alter"><h4>ALTER</h4></a>
+<pre><code class="language-sql">alter table 테이블명
+add  필드명 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT];
+</code></pre>
+<pre><code class="language-sql">alter table EMPLOYEE2
+add birthdate varchar(12);
+</code></pre>
+<a class="header" href="#drop" id="drop"><h4>DROP</h4></a>
+<pre><code class="language-sql">drop table 테이블이름;
+</code></pre>
+<pre><code class="language-sql">drop table EMPLOYEE2;
+</code></pre>
+<a class="header" href="#dcldata-control-language" id="dcldata-control-language"><h3>DCL(Data Control Language)</h3></a>
 <ul>
-<li>운영체제의 백그라운드로 MySQL이 계속 실행되도록 하고 싶다면 HomeBrew가 제공하는 명령을 이용하면 된다.</li>
+<li><strong>데이터를 제어</strong>하기 위해 사용한다.</li>
+<li>권한을 관리하고, 테이터의 보안, 무결성 등을 정의한다.</li>
+<li>GRANT, REVOKE</li>
 </ul>
-</li>
+<a class="header" href="#사용자-생성-및-권한-부여" id="사용자-생성-및-권한-부여"><h4>사용자 생성 및 권한 부여</h4></a>
+<ul>
+<li>db이름 뒤의 * 는 모든 권한을 의미한다.</li>
+<li>@’%’는 어떤 클라이언트에서든 접근 가능하다는 의미이고, @’localhost’는 해당 컴퓨터에서만 접근 가능하다는 의미다.</li>
+<li>flush privileges는 DBMS에게 적용을 하라는 의미다.</li>
 </ul>
-<pre><code class="language-sh">brew services start mysql
-brew services stop mysql
-brew services restart mysql
-brew services list
+<pre><code class="language-sql">grant all privileges on db이름.* to 계정이름@'%' identified by ＇암호’;
+grant all privileges on db이름.* to 계정이름@'localhost' identified by ＇암호’;
+flush privileges;
 </code></pre>
 <hr />
 <a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58930/">edwidth - 부스트코스 웹 백엔드</a></li>
+<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58934/">edwidth - 부스트코스 웹 백엔드</a></li>
 </ul>
 
                     </main>
@@ -277,7 +275,15 @@ brew services list
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../database/01-DBMS.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
+                        
+                            <a rel="next" href="../web/01-HTTP.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -287,7 +293,15 @@ brew services list
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="../database/01-DBMS.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
+                
+                    <a href="../web/01-HTTP.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
@@ -300,14 +314,14 @@ brew services list
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
