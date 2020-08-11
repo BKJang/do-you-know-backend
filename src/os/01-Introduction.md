@@ -277,4 +277,4 @@
 #### 🙏 Reference
 
 - [Operating System Concepts 10th Edition](https://www.amazon.com/Operating-System-Concepts-Abraham-Silberschatz-ebook/dp/B07CVKH7BD)
-- Thaks to [@jigi-kim](https://github.com/jigi-kim)
+- Thanks to [@jigi-kim](https://github.com/jigi-kim)
