@@ -4,6 +4,7 @@
 
   - [DBMS](./database/01-DBMS.md)
   - [SQL](./database/02-SQL.md)
+  - [JDBC](./database/03-JDBC.md)
 
 - [Web](./web/01-HTTP.md)
 
