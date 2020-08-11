@@ -164,4 +164,4 @@ public static void close(Connection conn, PreparedStatement ps){
 
 #### 🙏 Reference
 
-- [edwidth - 부스트코스 웹 백엔드](https://www.edwith.org/boostcourse-web-be/lecture/58934/)
+- [edwidth - 부스트코스 웹 백엔드](https://www.edwith.org/boostcourse-web-be/lecture/58939/)
