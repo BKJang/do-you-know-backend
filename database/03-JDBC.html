@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Web Server vs WAS - Do you know backend?</title>
+        <title>JDBC - Do you know backend?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li><li><a href="../database/02-SQL.html"><strong aria-hidden="true">1.2.</strong> SQL</a></li><li><a href="../database/03-JDBC.html"><strong aria-hidden="true">1.3.</strong> JDBC</a></li></ol></li><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="../web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="../web/03-WebServer-vs-WAS.html" class="active"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.</strong> Database</a></li><li><ol class="section"><li><a href="../database/01-DBMS.html"><strong aria-hidden="true">1.1.</strong> DBMS</a></li><li><a href="../database/02-SQL.html"><strong aria-hidden="true">1.2.</strong> SQL</a></li><li><a href="../database/03-JDBC.html" class="active"><strong aria-hidden="true">1.3.</strong> JDBC</a></li></ol></li><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.</strong> Web</a></li><li><ol class="section"><li><a href="../web/01-HTTP.html"><strong aria-hidden="true">2.1.</strong> HTTP</a></li><li><a href="../web/02-Browser.html"><strong aria-hidden="true">2.2.</strong> Web Browser</a></li><li><a href="../web/03-WebServer-vs-WAS.html"><strong aria-hidden="true">2.3.</strong> Web Server vs WAS</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,89 +176,137 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#web-server-vs-was" id="web-server-vs-was"><h1>Web Server vs WAS</h1></a>
-<a class="header" href="#웹-서버web-server" id="웹-서버web-server"><h2>웹 서버(Web Server)</h2></a>
+                        <a class="header" href="#jdbcjava-database-connectivity" id="jdbcjava-database-connectivity"><h1>JDBC(Java Database Connectivity)</h1></a>
+<p><code>JDBC</code>는 <code>JAVA</code>를 이용해서 데이터 베이스 접속과 SQL 실행 및 그에 따른 결과 데이터의 핸들링을 제공하는 방법과 절차에 대한 규약이다. 즉, 쉽게 말해 <code>JAVA</code>를 이용해 구현한 애플리케이션 내에서 SQL문을 실행하기 위해 만들어진 API라고 할 수 있다.</p>
+<a class="header" href="#jdbc-클래스-생성" id="jdbc-클래스-생성"><h2>JDBC 클래스 생성</h2></a>
+<p><img src="https://user-images.githubusercontent.com/24209005/89899209-e2c55680-dc1c-11ea-8539-ef5df37fc2bf.png" alt="JDBC_CLASS_CONSTRUCTION" /></p>
+<a class="header" href="#in-maven-dependency" id="in-maven-dependency"><h3>In Maven Dependency</h3></a>
+<pre><code class="language-xml">&lt;dependency&gt;   
+  &lt;groupId&gt;mysql&lt;/groupId&gt;   
+  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;version&gt;5.1.45&lt;/version&gt;
+ &lt;/dependency&gt;
+</code></pre>
+<a class="header" href="#import" id="import"><h3>Import</h3></a>
+<pre><code class="language-java">import java.sql.*;
+</code></pre>
+<a class="header" href="#load-driver" id="load-driver"><h3>Load Driver</h3></a>
+<pre><code class="language-java">Class.forName( &quot;com.mysql.jdbc.Driver&quot; );
+</code></pre>
+<a class="header" href="#get-connection" id="get-connection"><h3>Get Connection</h3></a>
+<pre><code class="language-java">String dburl  = &quot;jdbc:mysql://localhost/dbName&quot;;
+
+Connection con =  DriverManager.getConnection ( dburl, ID, PWD );
+</code></pre>
+<pre><code class="language-java">public static Connection getConnection() throws Exception{
+    String url = &quot;jdbc:oracle:thin:@117.16.46.111:1521:xe&quot;;
+    String user = &quot;smu&quot;;
+    String password = &quot;smu&quot;;
+    Connection conn = null;
+    Class.forName(&quot;oracle.jdbc.driver.OracleDriver&quot;);
+    conn = DriverManager.getConnection(url, user, password);
+    return conn;
+}
+</code></pre>
+<a class="header" href="#construct-statement" id="construct-statement"><h3>Construct Statement</h3></a>
+<pre><code class="language-java">Statement stmt = con.createStatement();
+</code></pre>
+<a class="header" href="#execute-query" id="execute-query"><h3>Execute Query</h3></a>
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery(&quot;select no from user&quot; );
+
+stmt.execute(“query”); //any SQL
+stmt.executeQuery(“query”); //SELECT
+stmt.executeUpdate(“query”); //INSERT, UPDATE, DELETE
+</code></pre>
+<a class="header" href="#get-result-with-resultset" id="get-result-with-resultset"><h3>Get Result with ResultSet</h3></a>
+<pre><code class="language-java">ResultSet rs = stmt.executeQuery( &quot;select no from user&quot; );
+while (rs.next())
+  System.out.println(rs.getInt( &quot;no&quot;));
+</code></pre>
+<a class="header" href="#close-connection" id="close-connection"><h3>Close Connection</h3></a>
+<pre><code class="language-java">rs.close();
+
+stmt.close();
+
+con.close();
+</code></pre>
+<a class="header" href="#example" id="example"><h2>Example</h2></a>
+<pre><code class="language-java">// GET
+public List&lt;GuestBookVO&gt; getGuestBookList(){
+  List&lt;GuestBookVO&gt; list = new ArrayList&lt;&gt;();
+  GuestBookVO vo = null;
+  Connection conn = null;
+  PreparedStatement ps = null;
+  ResultSet rs = null;
+
+  try {
+    conn = DBUtil.getConnection();
+    String sql = &quot;select * from guestbook&quot;;
+    ps = conn.prepareStatement(sql);
+    rs = ps.executeQuery();
+    while(rs.next()){
+      vo = new GuestBookVO();
+      vo.setNo(rs.getInt(1));
+      vo.setId(rs.getString(2));
+      vo.setTitle(rs.getString(3));
+      vo.setConetnt(rs.getString(4));
+      vo.setRegDate(rs.getString(5));
+      list.add(vo);
+    }
+  } catch (Exception e) {
+    e.printStackTrace();
+  } finally {
+    DBUtil.close(conn, ps, rs);
+  }		
+  return list;		
+}
+</code></pre>
+<pre><code class="language-java">// ADD
+public int addGuestBook(GuestBookVO vo){
+  int result = 0;
+  Connection conn = null;
+  PreparedStatement ps = null;
+
+  try {
+    conn = DBUtil.getConnection();
+    String sql = &quot;insert into guestbook values(&quot;
+        + &quot;guestbook_seq.nextval,?,?,?,sysdate)&quot;;
+    ps = conn.prepareStatement(sql);
+    ps.setString(1, vo.getId());
+    ps.setString(2, vo.getTitle());
+    ps.setString(3, vo.getConetnt());
+    result = ps.executeUpdate();
+  } catch (Exception e) {
+    e.printStackTrace();
+  } finally {
+    DBUtil.close(conn, ps);
+  }
+  
+  return result;
+}
+</code></pre>
+<pre><code class="language-java">// CLOSE
+public static void close(Connection conn, PreparedStatement ps){
+  if (ps != null) {
+    try {
+      ps.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  if (conn != null) {
+    try {
+      conn.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+}
+</code></pre>
+<hr />
+<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li>웹 서버는 소프트웨어(Software)를 보통 말하지만, 웹 서버 소프트웨어가 동작하는 컴퓨터를 말한다.</li>
-<li>웹 서버의 가장 중요한 기능은 클라이언트(Client)가 요청하는 HTML 문서나 각종 리소스(Resource)를 전달하는 것이다.</li>
-<li>웹 브라우저나 웹 크롤러가 요청하는 리소스는 컴퓨터에 저장된 정적(static)인 데이터이거나 동적인 결과가 될 수 있다.</li>
-</ul>
-<p>클라이언트와 서버간에 일어나는 로직의 순서는 다음과 같다.</p>
-<ol>
-<li>
-<p>클라이언트가 요청한 문서나 자원을 전달하는 역할을 한다.</p>
-</li>
-<li>
-<p>클라이언트는 서버에게 서비스를 요청한다.</p>
-</li>
-<li>
-<p>서버는 서비스를 제공한다.</p>
-</li>
-</ol>
-<p><img src="https://user-images.githubusercontent.com/24209005/88495572-4cc2e680-cff5-11ea-83ef-a9dd55c5901b.png" alt="was1" /></p>
-<a class="header" href="#웹-서버-소프트웨어의-종류" id="웹-서버-소프트웨어의-종류"><h3>웹 서버 소프트웨어의 종류</h3></a>
-<ul>
-<li>가장 많이 사용하는 웹 서버는 Apache, Nginx, Microsoft IIS</li>
-<li>Apache웹 서버는 Apache Software Foundation에서 개발한 웹서버로 오픈소스 소프트웨어(Open-source Software)이며, 거의 대부분 운영체제에서 설치 및 사용을 할 수 있다.</li>
-<li>Nginx는 차세대 웹서버로 불리며 더 적은 자원으로 더 빠르게 데이터를 서비스하는 것을 목적으로 만들어진 서버이며 Apache웹 서버와 마찬가지로 오픈소스 소프트웨어다.</li>
-</ul>
-<a class="header" href="#2-tier-architecture" id="2-tier-architecture"><h2>2-Tier Architecture</h2></a>
-<p><img src="https://user-images.githubusercontent.com/24209005/88495570-4c2a5000-cff5-11ea-9635-2fcd3fc2d6ca.png" alt="was2" /></p>
-<a class="header" href="#dbmsdata-base-management-system" id="dbmsdata-base-management-system"><h3>DBMS(Data Base Management System)</h3></a>
-<p>DBMS등장 이전에는 데이터를 저장하고 불러오는것을 직접 구현 해야했다. 하지만, 데이터가 많아지며 별도의 관리가 필요해졌고 DBMS가 등장하였다.</p>
-<p>DMBS는 보통 서버 형태로 서비스를 제공한다. 따라서 DBMS에 직접 접속해서 동작하는 클라이언트 프로그램이 만들어졌다.</p>
-<p>이러한 방식은 클라이언트의 로직이 많아지고, 클라이언트 프로그램의 크기가 커지며, 로직이 변경되면 클라이언트가 새로 배포되어야 한다.</p>
-<p>또한, 로직이 클라이언트에 포함되어 배포되기 때문에 보안이 나쁘다.</p>
-<a class="header" href="#cgicommon-gateway-interface" id="cgicommon-gateway-interface"><h3>CGI(Common Gateway Interface)</h3></a>
-<p>초기 웹은 정적 데이터만 보여줬다. 웹 서버 본연의 기능은 미리 준비된 정보(정적 리소스)를 클라이언트의 요청에 따라 응답해주는 것이기 때문이다.</p>
-<p>웹이 발전하며 동적인 기능을 요구하기 시작했다. 지금은 너무 당연하지만, 웹에서 데이터를 입력하고 조회하는 것 또한 동적인 기능이다.</p>
-<p>당연히, 이러한 기능들은 별도의 프로그래밍을 통해 구현해야 한다. 이를 위해 웹 서버에서 프로그래밍 기능이 들어가는 방식을 CGI라고 한다.</p>
-<blockquote>
-<p>서버 프로그램 내부의 프로그램에서 처리한 결과를 클라이언트에 응답하도록 서버와 내부 프로그램을 이어주는 방법 혹은 규칙이 CGI이다.</p>
-</blockquote>
-<p>단순한 프로그래밍에서는 문제가 없었다. 하지만, 프로그램이 복잡해지고 DBMS와 연계되는 작업이 많아지면서 사용자가 증가할수록 성능이 떨어지는 문제가 발생했다.</p>
-<a class="header" href="#3-tier-architecture" id="3-tier-architecture"><h2>3-Tier Architecture</h2></a>
-<p><img src="https://user-images.githubusercontent.com/24209005/88495567-4a608c80-cff5-11ea-833a-5aff36a9afd8.png" alt="was3" /></p>
-<a class="header" href="#미들웨어middleware" id="미들웨어middleware"><h3>미들웨어(MiddleWare)</h3></a>
-<p>2-Tier Architecture의 단점으로 미들웨어가 등장하게 되었다. 클라이언트와 데이터베이스 서버 사이에 다른 서버를 두는 방식이다.</p>
-<p>클라이언트는 요청만 보내고, 미들웨어에서 로직을 수행한다. 만약, 데이터 조작이 필요하면 미들웨어가 DBMS에 작업을 맡기고 그 결과를 클라이언트에게 전달한다.</p>
-<p>클라이언트는 응답을 받아서 출력만 하면되고, 미들웨어에 요청만 보내면 되기 때문에 프로그램의 크기가 줄어든다. 또한, 로직이 바뀌어도 다시 배포할 필요 없이 미들웨어만 수정하면 된다.</p>
-<a class="header" href="#wasweb-application-server" id="wasweb-application-server"><h2>WAS(Web Application Server)</h2></a>
-<p>넓은 의미에서 미들웨어라고 할 수 있다.</p>
-<p>웹 클라이언트의 요청 중 웹 애플리케이션이 동작하도록 지원하는 목적을 가진다.</p>
-<a class="header" href="#기능" id="기능"><h3>기능</h3></a>
-<ul>
-<li>프로그램 실행환경과 데이터 베이스 접속 기능을 제공한다.</li>
-<li>여러 개의 트랜젝션을 관리한다.</li>
-<li>업무 처리 비즈니스 로직을 수행한다.</li>
-</ul>
-<p>이외에도 웹 서버의 기능도 기본적으로 제공한다(톰캣만 설치해도 별도의 웹 서버가 필요 없는 이유이다). 하지만, 초창기의 WAS는 내장 웹서버의 성능이 좋지 않았다. 따라서 아파치 서버와 톰캣 서버를 함께 실행을 해서 사용하는 경우가 많았다. 하지만, 현재는 WAS에 내장되어 있는 웹 서버의 성능이 많이 개선되어 톰캣만으로도 충분히 동작하는 경우가 많아졌다.</p>
-<p>하지만, 그럼에도 큰 규모의 프로젝트에서는 웹 서버에서 정적인 컨텐츠를 웹 브라우저로 전송하고, WAS는 동적인 결과를 전송하는 역할을 하도록 나눈다.</p>
-<p><img src="https://user-images.githubusercontent.com/24209005/88495563-47fe3280-cff5-11ea-98ee-a7b34edbe896.png" alt="was4" /></p>
-<a class="header" href="#was와-웹-서버를-나누는-이유" id="was와-웹-서버를-나누는-이유"><h3>WAS와 웹 서버를 나누는 이유</h3></a>
-<ul>
-<li>자원 이용의 효율성
-<ul>
-<li>웹 서버는 보다 간단하게 만들어졌다. 따라서, 정적인 동작은 웹 서버에서 하는 것이 더 효율적이다.</li>
-</ul>
-</li>
-<li>장애 극복(failvoer)
-<ul>
-<li>WAS에서 동작하도록 만든 프로그램이 오작동하여 WAS자체에 문제가 발생할 수 있다. 따라서 WAS를 재시작 해야 하는 경우가 생길 수 있다. 만약 WAS 서버가 여러개 있다면, 문제가 발생한 WAS에 웹 서버에서 클라이언트가 접근 하지 못하게 한 뒤  WAS의 문제를 처리할 수 있다. 따라서, 무중단으로 서비스를 운영할 수 있다.
-<blockquote>
-<p>참고 - <a href="https://github.com/Im-D/Dev-Docs/blob/master/Network/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1%20&amp;%20%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0%EB%A7%81.md">로드밸런싱과 클러스터링</a></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>배포 및 유지 보수의 편의성</li>
-</ul>
-<a class="header" href="#pray-reference" id="pray-reference"><h4>:pray: Reference</h4></a>
-<ul>
-<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58946">edwidth - 부스트코스 웹 백엔드</a></li>
-<li><a href="http://www.ktword.co.kr/word/abbr_view.php?m_temp1=651&amp;m_search=cgi">CGI - 정보통신기술용어해설</a></li>
-<li><a href="https://whatis.techtarget.com/definition/common-gateway-interface-CGI">common gateway interface (CGI)</a></li>
-<li><a href="http://www.softwaretestingclass.com/what-is-difference-between-two-tier-and-three-tier-architecture/">What is Difference Between Two-Tier and Three-Tier Architecture?</a></li>
+<li><a href="https://www.edwith.org/boostcourse-web-be/lecture/58939/">edwidth - 부스트코스 웹 백엔드</a></li>
 </ul>
 
                     </main>
@@ -266,11 +314,15 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../web/02-Browser.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../database/02-SQL.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
+                        
+                            <a rel="next" href="../web/01-HTTP.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -280,11 +332,15 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../web/02-Browser.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../database/02-SQL.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
+                
+                    <a href="../web/01-HTTP.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
