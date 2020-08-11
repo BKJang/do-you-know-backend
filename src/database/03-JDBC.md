@@ -92,7 +92,8 @@ public List<GuestBookVO> getGuestBookList(){
   Connection conn = null;
   PreparedStatement ps = null;
   ResultSet rs = null;
-  try{
+
+  try {
     conn = DBUtil.getConnection();
     String sql = "select * from guestbook";
     ps = conn.prepareStatement(sql);
@@ -106,9 +107,9 @@ public List<GuestBookVO> getGuestBookList(){
       vo.setRegDate(rs.getString(5));
       list.add(vo);
     }
-  }catch(Exception e){
+  } catch (Exception e) {
     e.printStackTrace();
-  }finally {
+  } finally {
     DBUtil.close(conn, ps, rs);
   }		
   return list;		
@@ -121,7 +122,8 @@ public int addGuestBook(GuestBookVO vo){
   int result = 0;
   Connection conn = null;
   PreparedStatement ps = null;
-  try{
+
+  try {
     conn = DBUtil.getConnection();
     String sql = "insert into guestbook values("
         + "guestbook_seq.nextval,?,?,?,sysdate)";
@@ -130,9 +132,9 @@ public int addGuestBook(GuestBookVO vo){
     ps.setString(2, vo.getTitle());
     ps.setString(3, vo.getConetnt());
     result = ps.executeUpdate();
-  }catch(Exception e){
+  } catch (Exception e) {
     e.printStackTrace();
-  }finally {
+  } finally {
     DBUtil.close(conn, ps);
   }
   
